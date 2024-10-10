@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<article class="portfolio active" data-page="portfolio">
+<header>
+    <h2 class="h2 article-title">Portfolio</h2>
+  </header>
+
+  <section class="blog-posts" data-select>
+
+    <ul class="blog-posts-list">
+    {% for portfolio in portfolios %}
+      <li class="blog-post-item">
+        <a href="#">
+
+          <figure class="blog-banner-box">
+            <img src="{{ portfolio.image.url }}" alt="Design conferences in 2022" loading="lazy">
+          </figure>
+
+          <div class="blog-content">
+
+            <div class="blog-meta">
+              <p class="blog-category">Design</p>
+
+              <span class="dot"></span>
+
+              <time datetime="2022-02-23">{{ portfolio.sub_title }}</time>
+            </div>
+
+            <h3 class="h3 blog-item-title">{{ portfolio.title }}</h3>
+
+            <p class="blog-text">
+              {{ portfolio.description }}
+            </p>
+
+          </div>
+
+        </a>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+  </section>
+</article>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<article class="resume active" data-page="resume">
+<header>
+    <h2 class="h2 article-title">Resume</h2>
+  </header>
+
+  <section class="timeline">
+
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="book-outline"></ion-icon>
+      </div>
+
+      <h3 class="h3">Education</h3>
+    </div>
+
+    <ol class="timeline-list">
+        {% for education in educations %}
+      <li class="timeline-item">
+
+        <h4 class="h4 timeline-item-title">{{ education.education_title }}</h4>
+
+        <span>{{ education.year }}</span>
+
+        <p class="timeline-text">
+          {{ education.education_description }}
+        </p>
+
+      </li>
+      {% endfor %}
+
+    </ol>
+
+  </section>
+
+  <section class="timeline">
+
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="book-outline"></ion-icon>
+      </div>
+
+      <h3 class="h3">Experience</h3>
+    </div>
+
+    <ol class="timeline-list">
+    {% for experience in experiences %}
+    <li class="timeline-item">
+
+      <h4 class="h4 timeline-item-title">{{ experience.experience_title }}</h4>
+
+      <span>{{ experience.year }}</span>
+
+      <p class="timeline-text">
+        {{ experience.experience_description }}
+      </p>
+
+    </li>
+    {% endfor %}
+    </ol>
+
+  </section>
+
+  <section class="skill">
+
+    <h3 class="h3 skills-title">My skills</h3>
+
+    <ul class="skills-list content-card">
+
+      <li class="skills-item">
+
+        <div class="title-wrapper">
+          <h5 class="h5">Graphic design</h5>
+          <data value="90">99%</data>
+        </div>
+
+        <div class="skill-progress-bg">
+          <div class="skill-progress-fill" style="width: 99%;"></div>
+        </div>
+
+      </li>
+
+      <li class="skills-item">
+
+        <div class="title-wrapper">
+          <h5 class="h5">Branding</h5>
+          <data value="70">90%</data>
+        </div>
+
+        <div class="skill-progress-bg">
+          <div class="skill-progress-fill" style="width: 90%;"></div>
+        </div>
+
+      </li>
+
+      <li class="skills-item">
+
+        <div class="title-wrapper">
+          <h5 class="h5">VIDEO EDITING</h5>
+          <data value="80">70%</data>
+        </div>
+
+        <div class="skill-progress-bg">
+          <div class="skill-progress-fill" style="width: 70%;"></div>
+        </div>
+
+      </li>
+
+      <li class="skills-item">
+
+        <div class="title-wrapper">
+          <h5 class="h5">PACKAGE DESIGN</h5>
+          <data value="70">80%</data>
+        </div>
+
+        <div class="skill-progress-bg">
+          <div class="skill-progress-fill" style="width: 80%;"></div>
+        </div>
+
+      </li>
+
+    </ul>
+
+  </section>
+</article>
+
+{% endblock %}

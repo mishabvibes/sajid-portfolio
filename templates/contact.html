@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<article class="contact active" data-page="contact">
+<header>
+    <h2 class="h2 article-title">Contact</h2>
+  </header>
+
+  <section class="mapbox" data-mapbox>
+    <figure>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d453.6497703189039!2d76.20964883827264!3d10.753716419875957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7c33179661653%3A0x6b3164bb6ff7527!2sDesign%20Point!5e0!3m2!1sen!2sin!4v1728498605717!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            
+    </figure>
+  </section>
+
+  <section class="contact-form">
+
+    <h3 class="h3 form-title">Contact Form</h3>
+
+    <form action="" class="form" id="submit-form" data-form>
+        <div class="input-wrapper">
+            <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+            <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+        </div>
+
+        <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+        <button class="form-btn" type="submit" disabled data-form-btn> 
+            <ion-icon name="paper-plane"></ion-icon>
+            <span>Send Message</span>
+        </button>
+    </form>
+
+  </section>
+</article>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    const formInputs = document.querySelectorAll("[data-form-input]");
+    const formBtn = document.querySelector("[data-form-btn]");
+
+    formInputs.forEach(input => {
+        input.addEventListener("input", () => {
+            const isFormValid = [...formInputs].every(input => input.checkValidity());
+            formBtn.disabled = !isFormValid; // Enable or disable based on validity
+        });
+    });
+
+    $("#submit-form").submit((e) => {
+        e.preventDefault();
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbwo4udq7lyifGuT5u9koFMrEbwApyPdnrqOkbuBqMEA4q5xxLHXJ80Bk8FQU95xctdaWg/exec",
+            data: $("#submit-form").serialize(),
+            method: "post",
+            success: function (response) {
+                console.log("Response:", response); // Log the response
+                alert("Form submitted successfully");
+                window.location.href="{% url 'contact_section' %}"; // Ensure this is a valid Django URL
+            },
+            error: function (err) {
+                console.error("Error:", err); // Log the error
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}
